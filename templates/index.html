@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coffee Mood Generator ☕</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI';
+            background: linear-gradient(135deg, #fceabb, #f8b500, #ff7eb3);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button {
+            background: #6b4f4f;
+            color: white;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>☕ Your Coffee Mood</h1>
+
+    <form method="POST">
+        <select name="mood">
+            <option value="">Select Mood</option>
+            <option value="happy">😊 Happy</option>
+            <option value="tired">😴 Tired</option>
+            <option value="stressed">😫 Stressed</option>
+            <option value="lazy">🛋️ Lazy</option>
+            <option value="adventurous">🔥 Adventurous</option>
+        </select>
+
+        <br>
+
+        <button type="submit">Get Coffee</button>
+        <button type="submit" name="surprise" value="1">🎲 Surprise Me</button>
+    </form>
+
+    {% if coffee %}
+    <div class="result">
+        <h2>{{ coffee.name }}</h2>
+        <p>{{ coffee.recipe }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
