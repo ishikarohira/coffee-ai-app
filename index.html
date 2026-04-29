@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee AI ☕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a002f, #3a0ca3, #ff006e);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            opacity: 0.8;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff006e, #8338ec);
+            color: white;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(255, 0, 200, 0.6);
+        }
+
+        .result {
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 20px;
+            width: 320px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 40px rgba(255, 0, 200, 0.4);
+            animation: fadeIn 0.6s ease;
+        }
+
+        .coffee-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .coffee-recipe {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .extra-line {
+            margin-top: 10px;
+            font-size: 12px;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>☕ Mood → Coffee</h1>
+    <p class="tagline">Pick a mood… or don’t. Let it decide.</p>
+
+    <form method="POST">
+        <button name="mood" value="happy">😊 Happy</button>
+        <button name="mood" value="sad">😔 Sad</button>
+        <button name="mood" value="tired">😴 Tired</button>
+        <button name="mood" value="random">🎲 Decide my fate</button>
+    </form>
+
+    {% if coffee %}
+    <div class="result">
+        <div class="coffee-name" id="coffeeName"></div>
+        <div class="coffee-recipe" id="coffeeRecipe"></div>
+        <p class="extra-line" id="extraLine"></p>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    const name = "{{ coffee.name if coffee else '' }}";
+    const recipe = "{{ coffee.recipe if coffee else '' }}";
+
+    const lines = [
+        "You didn’t plan this. Now you’re making it.",
+        "This feels like a bad idea. Do it anyway.",
+        "You came for answers. You got caffeine.",
+        "This was inevitable.",
+        "You’re not in control anymore ☕"
+    ];
+
+    const randomLine = lines[Math.floor(Math.random() * lines.length)];
+
+    function typeEffect(element, text, speed=30) {
+        let i = 0;
+        function typing() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typing, speed);
+            }
+        }
+        typing();
+    }
+
+    window.onload = function() {
+        if(name){
+            typeEffect(document.getElementById("coffeeName"), name, 40);
+            setTimeout(() => {
+                typeEffect(document.getElementById("coffeeRecipe"), recipe, 20);
+            }, 500);
+
+            document.getElementById("extraLine").innerText = randomLine;
+        }
+    }
+</script>
+
+</body>
+</html>
