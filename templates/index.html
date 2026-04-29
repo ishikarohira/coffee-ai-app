@@ -16,12 +16,11 @@
         }
 
         .container {
-            margin-top: 100px;
+            margin-top: 80px;
         }
 
         h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: 34px;
         }
 
         .tagline {
@@ -31,8 +30,8 @@
         }
 
         button {
-            margin: 10px;
-            padding: 12px 20px;
+            margin: 8px;
+            padding: 12px 18px;
             border: none;
             border-radius: 25px;
             cursor: pointer;
@@ -90,9 +89,11 @@
 
     <form method="POST">
         <button name="mood" value="happy">😊 Happy</button>
-        <button name="mood" value="sad">😔 Sad</button>
         <button name="mood" value="tired">😴 Tired</button>
-        <button name="mood" value="random">🎲 Decide my fate</button>
+        <button name="mood" value="stressed">😵 Stressed</button>
+        <button name="mood" value="lazy">🛋️ Lazy</button>
+        <button name="mood" value="adventurous">🔥 Adventurous</button>
+        <button name="surprise" value="true">🎲 Decide my fate</button>
     </form>
 
     {% if coffee %}
